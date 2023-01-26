@@ -1,4 +1,4 @@
-package com.ap.productcatalogservice.controller;
+package com.ap.productcatalogservice.rest;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
