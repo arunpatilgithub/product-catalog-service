@@ -27,7 +27,7 @@ public class BookController {
     }
 
     @GetMapping
-    public Collection<Book> get() {
+    public Iterable<Book> get() {
         return bookService.viewBookList();
     }
 
