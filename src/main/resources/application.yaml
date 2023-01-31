@@ -1,5 +1,6 @@
 server:
   port: 9001
+  shutdown: graceful
   tomcat:
     connection-timeout: 3s
     keep-alive-timeout: 10s
@@ -9,6 +10,8 @@ server:
 spring:
   application:
     name: product-catalog-service
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
   config:
     import: "optional:configserver:"
   cloud:
@@ -25,7 +28,7 @@ spring:
   datasource:
     username: user
     password: password
-    url: jdbc:postgresql://localhost:5432/myshoppingappdb
+    url: jdbc:postgresql://localhost:5432/myshoppingcatalogdb
     hikari:
       connection-timeout: 2000 #ms
       maximum-pool-size: 5
