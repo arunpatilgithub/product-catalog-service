@@ -30,6 +30,6 @@ spec:
             - name: SPRING_CLOUD_CONFIG_URI
               value: http://my-shoppingapp-configservice
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres/myshoppingappdb
+              value: jdbc:postgresql://postgres/myshoppingcatalogdb
             - name: SPRING_PROFILES_ACTIVE
               value: testdata

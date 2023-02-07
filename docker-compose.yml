@@ -48,15 +48,19 @@ services:
       - BPL_DEBUG_ENABLED=true
       - BPL_DEBUG_PORT=9888
 
-  # Backing Services
-
-  postgres:
-    image: "postgres:latest"
-    container_name: "init.sqlpostgres"
+  edge-service:
+    depends_on:
+      - redis
+    image: "edge-service"
+    container_name: "edge-service"
     ports:
-      - 5432:5432
+      - 9000:9000
+      - 8000:8000
     environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-    volumes:
-      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      # Buildpacks environment variable to enable debug through a socket on port 8000
+      - BPL_DEBUG_ENABLED=true
+      - BPL_DEBUG_PORT=8000
+      - CATALOG_SERVICE_URL=http://product-catalog-service:9001
+      - ORDER_SERVICE_URL=http://order-service:9002
+      - SPRING_CLOUD_CONFIG_URI=http://my-shoppingapp-configservice:8888
+      - SPRING_REDIS_HOST=redis
